@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You 💖</title>
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #ffe6f0, #fff);
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.section {
+  padding: 40px 20px;
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+h1, p {
+  color: #444;
+}
+
+button {
+  background: #ff6fa5;
+  border: none;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.photos img {
+  width: 80%;
+  max-width: 300px;
+  margin: 10px;
+  border-radius: 20px;
+}
+
+/* floating emojis */
+.emoji {
+  position: fixed;
+  bottom: -50px;
+  font-size: 30px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-110vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SECTION 1 -->
+<div class="section active" id="s1">
+  <h1>Hey you 🥰</h1>
+  <p>You actually scanned it 🙈🐼</p>
+  <p>Don’t stop now… 💖✨</p>
+  <button onclick="next(2)">Continue 💕</button>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section" id="s2">
+  <h1>Our Moments 📸</h1>
+  <p>These mean a lot to me 🫶</p>
+  <div class="photos">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+  </div>
+  <button onclick="next(3)">Next 🐼</button>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section" id="s3">
+  <h1>I want to say this… 💗</h1>
+  <p>You make my days better 😊</p>
+  <p>My smiles real 😄</p>
+  <p>And my heart happy 🤍</p>
+  <h2>Will you be mine? 🥰💍</h2>
+</div>
+
+<script>
+function next(n) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('s' + n).classList.add('active');
+}
+
+// floating emojis
+const emojis = ["💖","🐼","✨","💕","🥰"];
+setInterval(() => {
+  const e = document.createElement("div");
+  e.className = "emoji";
+  e.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+  e.style.left = Math.random() * 100 + "vw";
+  e.style.animationDuration = (4 + Math.random()*3) + "s";
+  document.body.appendChild(e);
+  setTimeout(() => e.remove(), 7000);
+}, 600);
+</script>
+
+</body>
+</html>
